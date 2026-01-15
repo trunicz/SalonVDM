@@ -7,7 +7,7 @@ import react from '@astrojs/react';
 import markdoc from '@astrojs/markdoc';
 import keystatic from '@keystatic/astro';
 
-import node from '@astrojs/node';
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -15,9 +15,7 @@ export default defineConfig({
     plugins: [tailwindcss()]
   },
 
-  integrations: [react(), markdoc(), keystatic()],
+  integrations: [react(), markdoc()],
 
-  adapter: node({
-    mode: 'standalone',
-  }),
+  output: 'static',
 });
