@@ -1,0 +1,47 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/common/Navbar.astro";
+import ServicesSection from "../components/sections/Services.astro";
+import Team from "../components/sections/Team.astro";
+import Testimonials from "../components/sections/Testimonials.astro";
+import CTA from "../components/sections/CTA.astro";
+import Footer from "../components/common/Footer.astro";
+import { getLandingPageData } from "../lib/landingPageData";
+
+const data = await getLandingPageData();
+
+const navLinks = [
+  { label: "Inicio", href: "/" },
+  { label: "Servicios", href: "/services" },
+  { label: "Portafolio", href: "/portfolio" },
+  { label: "Nosotros", href: "/about" },
+  { label: "Contacto", href: "/contact" },
+];
+---
+
+<Layout title="Servicios - Agencia Minimal">
+  <Navbar title="Minimal." links={navLinks} />
+
+  <main class="pt-20">
+    <div class="bg-slate-900 text-white py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4">Nuestros Servicios</h1>
+      <p class="text-slate-400 max-w-2xl mx-auto text-lg">
+        Estrategias y soluciones digitales diseñadas para maximizar tu impacto.
+      </p>
+    </div>
+
+    <ServicesSection services={data.services} />
+
+    <Team team={data.team} />
+
+    <Testimonials testimonials={data.testimonials} />
+
+    <CTA
+      title="Potencia tu Marca"
+      subtext="¿Listo para escalar tu negocio? Agenda una consulta hoy."
+      buttonText="Reservar Cita"
+    />
+  </main>
+
+  <Footer copyright={data.footer.copyright} socials={data.footer.socials} />
+</Layout>

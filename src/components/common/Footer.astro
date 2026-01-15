@@ -1,0 +1,79 @@
+---
+import { Globe, Github, Twitter, Linkedin, Facebook } from "lucide-react";
+
+interface Social {
+  readonly platform: string;
+  readonly url: string;
+}
+
+interface Props {
+  copyright: string;
+  socials: readonly Social[];
+}
+
+const { copyright, socials } = Astro.props;
+
+const IconMap: Record<string, any> = {
+  Globe,
+  Github,
+  Twitter,
+  Linkedin,
+  Facebook,
+};
+const getIcon = (name: string) => IconMap[name] || Globe;
+---
+
+<footer class="bg-white border-t border-slate-100 pt-16 pb-8">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-12 mb-16">
+      <div class="col-span-1 md:col-span-2">
+        <span class="text-xl font-bold text-slate-900 block mb-4">Minimal.</span
+        >
+        <p class="text-slate-500 max-w-xs">
+          Construyendo el futuro digital, pixel a pixel.
+        </p>
+      </div>
+      <div>
+        <h4 class="font-bold text-slate-900 mb-4">Paquetes</h4>
+        <ul class="space-y-2 text-slate-500 text-sm">
+          <li><a href="#" class="hover:text-indigo-600">Nuevos</a></li>
+          <li><a href="#" class="hover:text-indigo-600">Populares</a></li>
+          <li><a href="#" class="hover:text-indigo-600">Ofertas</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4 class="font-bold text-slate-900 mb-4">Empresa</h4>
+        <ul class="space-y-2 text-slate-500 text-sm">
+          <li><a href="#" class="hover:text-indigo-600">Nosotros</a></li>
+          <li><a href="#" class="hover:text-indigo-600">Contacto</a></li>
+          <li><a href="#" class="hover:text-indigo-600">Privacidad</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div
+      class="border-t border-slate-100 pt-8 flex flex-col md:flex-row justify-between items-center gap-4"
+    >
+      <div class="text-slate-400 text-sm">
+        {copyright}
+      </div>
+      <div class="flex space-x-6">
+        {
+          socials &&
+            socials.map(social => {
+              const Icon = getIcon(social.platform) || Globe;
+              return (
+                <a
+                  href={social.url}
+                  class="text-slate-400 hover:text-indigo-600 transition-colors"
+                >
+                  <span class="sr-only">{social.platform}</span>
+                  <Icon className="w-5 h-5" />
+                </a>
+              );
+            })
+        }
+      </div>
+    </div>
+  </div>
+</footer>

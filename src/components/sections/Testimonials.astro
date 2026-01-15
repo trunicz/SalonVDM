@@ -1,0 +1,49 @@
+---
+interface Testimonial {
+  readonly author: string;
+  readonly role: string;
+  readonly content: string;
+  readonly rating: number;
+}
+
+interface Props {
+  testimonials: readonly Testimonial[];
+}
+
+const { testimonials } = Astro.props;
+---
+
+<section id="testimonials" class="py-24 bg-white overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        Testimonios
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      {
+        testimonials.map(t => (
+          <div class="bg-slate-50 p-8 rounded-2xl relative">
+            <div class="text-indigo-500 mb-4">
+              {[...Array(5)].map((_, i) => (
+                <span
+                  class={`inline-block text-lg ${i < t.rating ? "opacity-100" : "opacity-20"}`}
+                >
+                  ★
+                </span>
+              ))}
+            </div>
+            <blockquote class="text-slate-700 font-medium text-lg mb-6 leading-relaxed">
+              "{t.content}"
+            </blockquote>
+            <div>
+              <div class="font-bold text-slate-900">{t.author}</div>
+              <div class="text-slate-500 text-sm">{t.role}</div>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

@@ -1,0 +1,38 @@
+---
+interface GalleryItem {
+  readonly url: string;
+  readonly caption: string;
+}
+
+interface Props {
+  gallery: readonly GalleryItem[];
+}
+
+const { gallery } = Astro.props;
+---
+
+<section id="gallery" class="py-24 bg-slate-900 text-white">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold mb-4">Nuestro Trabajo</h2>
+      <p class="text-slate-400">Un vistazo a nuestra creatividad diaria.</p>
+    </div>
+
+    <div class="columns-1 md:columns-2 lg:columns-3 gap-8 space-y-8">
+      {
+        gallery.map(item => (
+          <div class="break-inside-avoid relative group rounded-2xl overflow-hidden">
+            <img
+              src={item.url}
+              alt={item.caption}
+              class="w-full h-auto object-cover transform group-hover:scale-105 transition-transform duration-700"
+            />
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
+              <span class="font-medium text-lg">{item.caption}</span>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

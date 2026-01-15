@@ -1,0 +1,68 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/common/Navbar.astro";
+import AboutSection from "../components/sections/About.astro";
+import Footer from "../components/common/Footer.astro";
+import { getLandingPageData } from "../lib/landingPageData";
+
+const data = await getLandingPageData();
+
+const navLinks = [
+  { label: "Inicio", href: "/" },
+  { label: "Paquetes", href: "/products" },
+  { label: "Servicios", href: "/features" },
+  { label: "Nosotros", href: "/about" },
+  { label: "Contacto", href: "/contact" },
+];
+---
+
+<Layout title="Nosotros - Agencia Minimal">
+  <Navbar title="Minimal." links={navLinks} />
+
+  <main class="pt-20">
+    <div class="bg-slate-50 py-20 text-center">
+      <h1 class="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+        Nuestra Historia
+      </h1>
+    </div>
+
+    <AboutSection
+      title={data.about.title}
+      content={typeof data.about.content === "string"
+        ? data.about.content
+        : "Contenido desde el CMS"}
+    />
+
+    <div class="max-w-4xl mx-auto px-6 pb-24 text-center">
+      <h2 class="text-2xl font-bold text-slate-900 mb-6">
+        ¿Por qué Elegirnos?
+      </h2>
+      <div class="grid md:grid-cols-3 gap-8">
+        <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+          <div class="text-4xl mb-4">✨</div>
+          <h3 class="font-bold mb-2">Diseño de Impacto</h3>
+          <p class="text-slate-500 text-sm">
+            Priorizamos la estética sin comprometer la funcionalidad o la
+            conversión.
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+          <div class="text-4xl mb-4">🌱</div>
+          <h3 class="font-bold mb-2">Crecimiento Sostenible</h3>
+          <p class="text-slate-500 text-sm">
+            Estrategias a largo plazo que construyen marcas sólidas y duraderas.
+          </p>
+        </div>
+        <div class="p-6 bg-white rounded-2xl shadow-sm border border-slate-100">
+          <div class="text-4xl mb-4">🤝</div>
+          <h3 class="font-bold mb-2">Aliados Estratégicos</h3>
+          <p class="text-slate-500 text-sm">
+            Trabajamos codo a codo contigo como una extensión de tu equipo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <Footer copyright={data.footer.copyright} socials={data.footer.socials} />
+</Layout>

@@ -1,0 +1,67 @@
+---
+import {
+  Zap,
+  Layout,
+  Code,
+  CheckCircle,
+  Globe,
+  Download,
+  Rocket,
+} from "lucide-react";
+
+interface Feature {
+  readonly title: string;
+  readonly description: string;
+  readonly icon: string;
+}
+
+interface Props {
+  features: readonly Feature[];
+}
+
+const { features } = Astro.props;
+
+// Icon Map
+const IconMap: Record<string, any> = {
+  Zap,
+  Layout,
+  Code,
+  CheckCircle,
+  Globe,
+  Download,
+  Rocket,
+};
+const getIcon = (name: string) => IconMap[name] || CheckCircle;
+---
+
+<section id="features" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center mb-20 animate-fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        Características Principales
+      </h2>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
+      {
+        features &&
+          features.map(feature => {
+            const Icon = getIcon(feature.icon);
+            return (
+              <div class="group animate-fade-up">
+                <div class="w-12 h-12 bg-slate-100 rounded-2xl flex items-center justify-center text-slate-900 mb-6 group-hover:bg-indigo-600 group-hover:text-white transition-all duration-300">
+                  <Icon className="w-6 h-6" />
+                </div>
+                <h3 class="text-xl font-semibold text-slate-900 mb-3">
+                  {feature.title}
+                </h3>
+                <p class="text-slate-500 leading-relaxed">
+                  {feature.description}
+                </p>
+              </div>
+            );
+          })
+      }
+    </div>
+  </div>
+</section>

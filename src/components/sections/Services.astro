@@ -1,0 +1,64 @@
+---
+interface Service {
+  readonly title: string;
+  readonly price: string;
+  readonly description: string;
+  readonly duration: string;
+}
+
+interface Props {
+  services: readonly Service[];
+}
+
+const { services } = Astro.props;
+---
+
+<section id="services" class="py-24 bg-white">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center mb-16 animate-fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        Nuestros Servicios
+      </h2>
+      <p class="text-slate-500 max-w-xl mx-auto">
+        Soluciones de marketing estratégico para tu crecimiento.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        services.map(service => (
+          <div class="p-8 rounded-2xl border border-slate-100 bg-slate-50 hover:bg-white hover:border-indigo-100 hover:shadow-xl hover:shadow-indigo-100/40 transition-all duration-300 group">
+            <div class="flex justify-between items-start mb-4">
+              <h3 class="text-xl font-bold text-slate-900 group-hover:text-indigo-600 transition-colors">
+                {service.title}
+              </h3>
+              <span class="text-lg font-semibold text-slate-900 bg-white px-3 py-1 rounded-lg border border-slate-100 shadow-sm">
+                {service.price}
+              </span>
+            </div>
+            <p class="text-slate-500 mb-6 leading-relaxed">
+              {service.description}
+            </p>
+            <div class="flex items-center text-sm font-medium text-slate-400">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-4 w-4 mr-2"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"
+                />
+              </svg>
+              {service.duration}
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

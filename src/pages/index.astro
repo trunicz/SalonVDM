@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/common/Navbar.astro";
+import Hero from "../components/sections/Hero.astro";
+import Features from "../components/sections/Features.astro";
+import Products from "../components/sections/Products.astro";
+import About from "../components/sections/About.astro";
+import CTA from "../components/sections/CTA.astro";
+import Footer from "../components/common/Footer.astro";
+import { getLandingPageData } from "../lib/landingPageData";
+
+const data = await getLandingPageData();
+
+const navLinks = [
+  { label: "Inicio", href: "/" },
+  { label: "Servicios", href: "/services" },
+  { label: "Portafolio", href: "/portfolio" },
+  { label: "Paquetes", href: "/products" },
+  { label: "Nosotros", href: "/about" },
+];
+---
+
+<Layout title="Agencia Minimal - Marketing Digital">
+  <Navbar title="Minimal." links={navLinks} />
+
+  <main>
+    <Hero
+      headline={data.hero.headline}
+      subheadline={data.hero.subheadline}
+      ctaText={data.hero.ctaText}
+      ctaLink={data.hero.ctaLink}
+    />
+
+    <div class="py-12 text-center bg-slate-50">
+      <h2 class="text-2xl font-bold text-slate-900">Imagina tu Marca Aquí</h2>
+      <p class="text-slate-500 mt-2">
+        Este contenido es un marcador de posición. Aquí destacaremos tus mayores
+        fortalezas.
+      </p>
+      <div class="mt-8 flex justify-center gap-4">
+        <a href="/features" class="text-indigo-600 font-medium hover:underline"
+          >Ver Servicios &rarr;</a
+        >
+        <a href="/products" class="text-indigo-600 font-medium hover:underline"
+          >Ver Paquetes &rarr;</a
+        >
+      </div>
+    </div>
+
+    <!-- We verify specific sections exist before rendering, though our data helper ensures defaults -->
+    <Features features={data.features.slice(0, 3)} />
+
+    <Products products={data.products.slice(0, 3)} />
+
+    <CTA
+      title={data.cta.title}
+      subtext={data.cta.subtext}
+      buttonText={data.cta.buttonText}
+    />
+  </main>
+
+  <Footer copyright={data.footer.copyright} socials={data.footer.socials} />
+</Layout>

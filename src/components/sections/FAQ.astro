@@ -1,0 +1,44 @@
+---
+import { Plus } from "lucide-react";
+
+interface FAQItem {
+  readonly question: string;
+  readonly answer: string;
+}
+
+interface Props {
+  faq: readonly FAQItem[];
+}
+
+const { faq } = Astro.props;
+---
+
+<section id="faq" class="py-24 bg-white">
+  <div class="max-w-3xl mx-auto px-6">
+    <div class="text-center mb-16">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        Preguntas Frecuentes
+      </h2>
+    </div>
+
+    <div class="space-y-4">
+      {
+        faq.map(item => (
+          <details class="group bg-slate-50 rounded-2xl border border-slate-100 overflow-hidden">
+            <summary class="flex justify-between items-center p-6 cursor-pointer list-none">
+              <span class="font-bold text-slate-900 text-lg">
+                {item.question}
+              </span>
+              <span class="text-indigo-600 transition-transform duration-300 group-open:rotate-45">
+                <Plus size={24} />
+              </span>
+            </summary>
+            <div class="px-6 pb-6 text-slate-600 leading-relaxed">
+              {item.answer}
+            </div>
+          </details>
+        ))
+      }
+    </div>
+  </div>
+</section>

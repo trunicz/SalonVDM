@@ -1,0 +1,64 @@
+---
+interface TeamMember {
+  readonly name: string;
+  readonly role: string;
+  readonly bio: string;
+  readonly image?: string | null;
+}
+
+interface Props {
+  team: readonly TeamMember[];
+}
+
+const { team } = Astro.props;
+---
+
+<section id="team" class="py-24 bg-slate-50">
+  <div class="max-w-7xl mx-auto px-6 sm:px-8 lg:px-12">
+    <div class="text-center mb-16 animate-fade-up">
+      <h2 class="text-3xl md:text-4xl font-bold text-slate-900 mb-4">
+        Conoce al Equipo
+      </h2>
+      <p class="text-slate-500 max-w-xl mx-auto">
+        Profesionales apasionados dedicados a tu éxito.
+      </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {
+        team.map(member => (
+          <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-shadow duration-300">
+            <div class="aspect-square bg-slate-200 relative overflow-hidden group">
+              {member.image ? (
+                <img
+                  src={member.image}
+                  alt={member.name}
+                  class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+              ) : (
+                <div class="w-full h-full flex items-center justify-center bg-indigo-50 text-indigo-200">
+                  <svg
+                    class="w-24 h-24"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M24 20.993V24H0v-2.996A14.977 14.977 0 0112.004 15c4.904 0 9.26 2.354 11.996 5.993zM16.002 8.999a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+              )}
+            </div>
+            <div class="p-6 text-center">
+              <h3 class="text-xl font-bold text-slate-900 mb-1">
+                {member.name}
+              </h3>
+              <p class="text-indigo-600 font-medium text-sm mb-4">
+                {member.role}
+              </p>
+              <p class="text-slate-500 text-sm leading-relaxed">{member.bio}</p>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>
