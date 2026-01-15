@@ -1,0 +1,136 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<Layout>
+  <Navbar />
+
+  <main class="bg-stone-50 min-h-screen">
+    <!-- Header -->
+    <div class="relative py-20 bg-stone-900 overflow-hidden">
+      <!-- Background pattern -->
+      <div
+        class="absolute inset-0 opacity-10"
+        style="background-image: url('data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23d4af37\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E');"
+      >
+      </div>
+
+      <div class="container mx-auto px-6 text-center relative z-10">
+        <h1 class="text-4xl md:text-5xl font-display font-bold text-white mb-4">
+          Nuestra Historia
+        </h1>
+        <p class="text-stone-400 max-w-2xl mx-auto">
+          Más que un salón de eventos, somos el lugar donde comienzan tus
+          mejores recuerdos.
+        </p>
+      </div>
+    </div>
+
+    <div class="container mx-auto px-6 py-16">
+      <div class="grid md:grid-cols-2 gap-12 items-center">
+        <!-- Text Content -->
+        <div class="space-y-6">
+          <span
+            class="text-gold-600 font-bold tracking-widest text-sm uppercase"
+            >Sobre Villas del Mayo</span
+          >
+          <h2
+            class="text-3xl md:text-4xl font-display font-bold text-stone-900"
+          >
+            Tradición y Excelencia en Eventos
+          </h2>
+          <div class="prose prose-stone text-stone-600 leading-relaxed">
+            <p>
+              Fundado con la visión de ofrecer un espacio único en la región, <strong
+                >Villas del Mayo</strong
+              > ha sido el escenario de innumerables celebraciones familiares y eventos
+              corporativos. Nuestro compromiso es brindar un ambiente seguro, limpio
+              y elegante para que tú solo te preocupes por disfrutar.
+            </p>
+            <p>
+              Ubicados en una zona accesible pero tranquila, nuestras
+              instalaciones combinan lo mejor de dos mundos: un amplio salón
+              techado para la formalidad y comodidad, y hermosas áreas verdes
+              con alberca para la diversión y relajación.
+            </p>
+            <p>
+              Nos enorgullece nuestro equipo de mantenimiento y servicio,
+              quienes trabajan incansablemente para que cada rincón del salón
+              esté impecable antes de tu llegada. Tu satisfacción es nuestra
+              mejor carta de presentación.
+            </p>
+          </div>
+
+          <div class="pt-4 grid grid-cols-2 gap-6">
+            <div class="border-l-4 border-gold-500 pl-4">
+              <span class="block text-2xl font-bold text-stone-900">+10</span>
+              <span class="text-sm text-stone-500">Años de experiencia</span>
+            </div>
+            <div class="border-l-4 border-gold-500 pl-4">
+              <span class="block text-2xl font-bold text-stone-900">100%</span>
+              <span class="text-sm text-stone-500">Eventos Exitosos</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Image Grid -->
+        <div class="grid grid-cols-2 gap-4">
+          <img
+            src="/images/Img3.jpg"
+            alt="Detalle del salón"
+            class="rounded-2xl shadow-lg w-full h-64 object-cover transform translate-y-8"
+          />
+          <img
+            src="/images/Img5.jpg"
+            alt="Alberca de día"
+            class="rounded-2xl shadow-lg w-full h-64 object-cover"
+          />
+        </div>
+      </div>
+    </div>
+
+    <!-- Values Section -->
+    <section class="bg-stone-100 py-16">
+      <div class="container mx-auto px-6">
+        <h2
+          class="text-3xl font-display font-bold text-stone-900 text-center mb-12"
+        >
+          Por qué elegirnos
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8">
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm border border-stone-200 text-center"
+          >
+            <h3 class="text-xl font-bold text-stone-900 mb-3">Compromiso</h3>
+            <p class="text-stone-600 text-sm">
+              Respetamos rigurosamente los tiempos de entrega y las condiciones
+              pactadas. Sin sorpresas de último minuto.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm border border-stone-200 text-center"
+          >
+            <h3 class="text-xl font-bold text-stone-900 mb-3">Calidad</h3>
+            <p class="text-stone-600 text-sm">
+              Mantenemos nuestras instalaciones, desde la alberca hasta los
+              baños, en condiciones óptimas de higiene y funcionamiento.
+            </p>
+          </div>
+          <div
+            class="bg-white p-8 rounded-xl shadow-sm border border-stone-200 text-center"
+          >
+            <h3 class="text-xl font-bold text-stone-900 mb-3">Atención</h3>
+            <p class="text-stone-600 text-sm">
+              Trato directo y personalizado. Estamos disponibles para resolver
+              tus dudas y adaptar el espacio a tus necesidades.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>

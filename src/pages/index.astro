@@ -1,63 +1,310 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import Navbar from "../components/common/Navbar.astro";
-import Hero from "../components/sections/Hero.astro";
-import Features from "../components/sections/Features.astro";
-import Products from "../components/sections/Products.astro";
-import About from "../components/sections/About.astro";
-import CTA from "../components/sections/CTA.astro";
-import Footer from "../components/common/Footer.astro";
-import { getLandingPageData } from "../lib/landingPageData";
-
-const data = await getLandingPageData();
-
-const navLinks = [
-  { label: "Inicio", href: "/" },
-  { label: "Servicios", href: "/services" },
-  { label: "Portafolio", href: "/portfolio" },
-  { label: "Paquetes", href: "/products" },
-  { label: "Nosotros", href: "/about" },
-];
+import Navbar from "../components/Navbar.astro";
+import Footer from "../components/Footer.astro";
 ---
 
-<Layout title="Agencia Minimal - Marketing Digital">
-  <Navbar title="Minimal." links={navLinks} />
+<Layout>
+  <Navbar />
 
   <main>
-    <Hero
-      headline={data.hero.headline}
-      subheadline={data.hero.subheadline}
-      ctaText={data.hero.ctaText}
-      ctaLink={data.hero.ctaLink}
-    />
-
-    <div class="py-12 text-center bg-slate-50">
-      <h2 class="text-2xl font-bold text-slate-900">Imagina tu Marca Aquí</h2>
-      <p class="text-slate-500 mt-2">
-        Este contenido es un marcador de posición. Aquí destacaremos tus mayores
-        fortalezas.
-      </p>
-      <div class="mt-8 flex justify-center gap-4">
-        <a href="/features" class="text-indigo-600 font-medium hover:underline"
-          >Ver Servicios &rarr;</a
-        >
-        <a href="/products" class="text-indigo-600 font-medium hover:underline"
-          >Ver Paquetes &rarr;</a
-        >
+    <!-- Hero Section -->
+    <section
+      class="relative h-[80vh] flex items-center justify-center overflow-hidden"
+    >
+      <!-- Background Image with Overlay -->
+      <div class="absolute inset-0 z-0">
+        <img
+          src="/images/Img1.jpg"
+          alt="Salón VDM Vista General"
+          class="w-full h-full object-cover"
+        />
+        <div class="absolute inset-0 bg-black/40 backdrop-blur-[2px]"></div>
       </div>
-    </div>
 
-    <!-- We verify specific sections exist before rendering, though our data helper ensures defaults -->
-    <Features features={data.features.slice(0, 3)} />
+      <!-- Content -->
+      <div class="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+        <span
+          class="block text-gold-500 font-bold tracking-widest text-sm uppercase mb-4 animate-fade-in-up"
+          >Eventos Exclusivos</span
+        >
+        <h1
+          class="text-5xl md:text-7xl font-display font-bold mb-6 leading-tight animate-fade-in-up delay-100"
+        >
+          Celebra Tus Mejores Momentos en <span class="text-gold-500"
+            >Villas del Mayo</span
+          >
+        </h1>
+        <p
+          class="text-lg md:text-xl text-stone-200 mb-10 max-w-2xl mx-auto animate-fade-in-up delay-200"
+        >
+          Un espacio diseñado para la comodidad y diversión de tus invitados.
+          Alberca, áreas verdes y salón equipado.
+        </p>
+        <div
+          class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up delay-300"
+        >
+          <a
+            href="https://wa.me/6131091873"
+            target="_blank"
+            class="bg-gold-500 hover:bg-gold-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-gold-500/30"
+          >
+            Reservar Fecha
+          </a>
+          <a
+            href="/galeria"
+            class="bg-white/10 hover:bg-white/20 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg transition-all"
+          >
+            Ver Galería
+          </a>
+        </div>
+      </div>
+    </section>
 
-    <Products products={data.products.slice(0, 3)} />
+    <!-- Info & Hours Section -->
+    <section id="informacion" class="py-20 bg-stone-50">
+      <div class="container mx-auto px-6">
+        <div class="grid md:grid-cols-2 gap-12 items-center">
+          <div class="space-y-8">
+            <h2 class="text-4xl font-display font-bold text-stone-900">
+              Horarios y Servicios
+            </h2>
+            <p class="text-stone-600 text-lg leading-relaxed">
+              Disfruta de nuestras instalaciones con total flexibilidad. Nos
+              adaptamos a las necesidades de tu evento para garantizar una
+              experiencia inolvidable.
+            </p>
 
-    <CTA
-      title={data.cta.title}
-      subtext={data.cta.subtext}
-      buttonText={data.cta.buttonText}
-    />
+            <div
+              class="bg-white p-6 rounded-2xl shadow-sm border border-stone-100 space-y-4"
+            >
+              <div class="flex items-start gap-4">
+                <div class="bg-blue-100 p-3 rounded-full text-blue-600">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><circle cx="12" cy="12" r="10"></circle><polyline
+                      points="12 6 12 12 16 14"></polyline></svg
+                  >
+                </div>
+                <div>
+                  <h3 class="font-bold text-stone-900 text-lg">
+                    Horario de Alberca
+                  </h3>
+                  <p class="text-stone-600">
+                    De <span class="font-semibold text-blue-600"
+                      >10:00 AM a 9:00 PM</span
+                    >
+                  </p>
+                  <p class="text-xs text-stone-500 mt-1">
+                    *Obligatorio por servicio de mantenimiento.
+                  </p>
+                </div>
+              </div>
+
+              <div class="w-full h-px bg-stone-100"></div>
+
+              <div class="flex items-start gap-4">
+                <div class="bg-gold-100 p-3 rounded-full text-gold-600">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="24"
+                    height="24"
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    stroke-width="2"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    ><rect x="3" y="4" width="18" height="18" rx="2" ry="2"
+                    ></rect><line x1="16" y1="2" x2="16" y2="6"></line><line
+                      x1="8"
+                      y1="2"
+                      x2="8"
+                      y2="6"></line><line x1="3" y1="10" x2="21" y2="10"
+                    ></line></svg
+                  >
+                </div>
+                <div>
+                  <h3 class="font-bold text-stone-900 text-lg">
+                    Horario del Salón
+                  </h3>
+                  <p class="text-stone-600">
+                    De <span class="font-semibold text-gold-600"
+                      >10:00 AM a 10:00 PM</span
+                    >
+                  </p>
+                  <p class="text-xs text-stone-500 mt-1">
+                    *Posibilidad de horas extra después de las 10 PM con costo
+                    adicional.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="relative h-96 md:h-[500px] rounded-3xl overflow-hidden shadow-2xl skew-x-1 hover:skew-x-0 transition-transform duration-700"
+          >
+            <img
+              src="/images/Img2.jpg"
+              alt="Instalaciones"
+              class="w-full h-full object-cover"
+            />
+            <div
+              class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/80 to-transparent p-8"
+            >
+              <p class="text-white font-display text-2xl font-bold">
+                Instalaciones de Lujo
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Services Teaser -->
+    <section class="py-20 bg-white">
+      <div class="container mx-auto px-6 text-center">
+        <span class="text-gold-600 font-bold tracking-widest text-sm uppercase"
+          >Personalización</span
+        >
+        <h2 class="text-4xl font-display font-bold text-stone-900 mt-2 mb-12">
+          Hacemos realidad tu visión
+        </h2>
+
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100">
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold-600 mx-auto mb-4 shadow-sm"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path
+                  d="M12 2.97l.83 2.51c.07.22.28.37.52.37h2.65c.66 0 .93.85.4 1.23l-2.15 1.56c-.19.14-.27.38-.19.61l.82 2.5c.21.64-.52 1.17-1.08.77L12 11.23l-2.16 1.55c-.56.4-1.29-.13-1.08-.77l.82-2.5c.08-.23 0-.47-.19-.61L7.24 7.31c-.53-.38-.26-1.23.4-1.23h2.65c.24 0 .45-.15.52-.37L12 2.97z"
+                ></path><path d="M7 17l1.45-4.4M17 17l-1.45-4.4"></path><line
+                  x1="3"
+                  y1="21"
+                  x2="21"
+                  y2="21"></line></svg
+              >
+            </div>
+            <h3 class="font-bold text-lg mb-2">Decoración</h3>
+            <p class="text-stone-600 text-sm">Ambienta el lugar a tu gusto</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100">
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold-600 mx-auto mb-4 shadow-sm"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><path d="M16 2v4"></path><path d="M21 2v4"></path><path
+                  d="M16 21v-3.6a.4.4 0 0 0-.4-.4H4.4a.4.4 0 0 0-.4.4V21"
+                ></path><path
+                  d="M18.8 6H5.2A3.2 3.2 0 0 0 2 9.2v7.6a.4.4 0 0 0 .4.4h19.2a.4.4 0 0 0 .4-.4V9.2A3.2 3.2 0 0 0 18.8 6Z"
+                ></path></svg
+              >
+            </div>
+            <h3 class="font-bold text-lg mb-2">Banquete</h3>
+            <p class="text-stone-600 text-sm">Deliciosas opciones para todos</p>
+          </div>
+          <div class="p-6 rounded-2xl bg-stone-50 border border-stone-100">
+            <div
+              class="w-12 h-12 bg-white rounded-full flex items-center justify-center text-gold-600 mx-auto mb-4 shadow-sm"
+            >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                ><rect width="18" height="12" x="3" y="8" rx="2" ry="2"
+                ></rect><path d="M12 8v12"></path><path d="M6 21v-3"
+                ></path><path d="M18 21v-3"></path><path
+                  d="M4 8V6a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v2"></path></svg
+              >
+            </div>
+            <h3 class="font-bold text-lg mb-2">Mobiliario</h3>
+            <p class="text-stone-600 text-sm">Comodidad para tus invitados</p>
+          </div>
+        </div>
+
+        <a
+          href="/amenidades"
+          class="inline-block border border-gold-600 text-gold-600 hover:bg-gold-50 px-8 py-3 rounded-full font-bold transition-all"
+        >
+          Ver todos los servicios
+        </a>
+      </div>
+    </section>
+
+    <!-- Call to Action -->
+    <section class="py-20 bg-stone-900 relative overflow-hidden">
+      <!-- Decorarive Elements -->
+      <div
+        class="absolute top-0 right-0 p-20 bg-gold-500/10 blur-3xl rounded-full translate-x-1/2 -translate-y-1/2"
+      >
+      </div>
+      <div
+        class="absolute bottom-0 left-0 p-20 bg-blue-500/10 blur-3xl rounded-full -translate-x-1/2 translate-y-1/2"
+      >
+      </div>
+
+      <div class="container mx-auto px-6 relative z-10 text-center">
+        <h2 class="text-4xl md:text-5xl font-display font-bold text-white mb-6">
+          ¿Listo para celebrar?
+        </h2>
+        <p class="text-stone-400 text-lg mb-10 max-w-2xl mx-auto">
+          Contáctanos hoy mismo para verificar disponibilidad y reservar tu
+          fecha. Atendemos vía WhatsApp para mayor rapidez.
+        </p>
+        <a
+          href="https://wa.me/6131091873"
+          target="_blank"
+          class="inline-flex items-center gap-3 bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-all shadow-lg hover:shadow-green-500/30 transform hover:-translate-y-1"
+        >
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="currentColor"
+            ><path
+              d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"
+            ></path></svg
+          >
+          Enviar WhatsApp
+        </a>
+      </div>
+    </section>
   </main>
 
-  <Footer copyright={data.footer.copyright} socials={data.footer.socials} />
+  <Footer />
 </Layout>
